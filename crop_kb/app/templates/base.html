@@ -1,0 +1,159 @@
+{% load staticfiles %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link href="{% static 'css/materialize.min.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/materialize.min.js' %}"></script>-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <script src="http://oceas72q5.bkt.clouddn.com/js/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+    <title>农作物知识库</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper container col s8 m8 l8">
+          <ul class="hide-on-med-and-down">
+            <li><a href="{% url 'app:index' %}">农作物知识库</a></li>
+          </ul>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a class="waves-effect waves-light btn modal-trigger" href="#select">查找</a></li>
+              <li><a href="">添加</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <form action="/" method="post">
+        {% csrf_token %}
+    <div id="select" class="field md-dialog-container modal">
+      <div class="z-depth-5 modal-content">
+        <div class="form-group">
+          <label>请选择农作物种类</label>
+             <select class="form-control" name="crop" id="crop">
+                 <option value="">全部</option>
+                 <option value="小麦">小麦</option>
+                 <option value="水稻">水稻</option>
+             </select>
+        </div>
+        <div class="form-group">
+          <label>请选择时间节点</label>
+             <select class="form-control" name="time" id="time">
+                 <option value="">全部</option>
+                 <option value="一月上旬">一月上旬</option>
+                 <option value="一月中旬">一月中旬</option>
+                 <option value="一月下旬">一月下旬</option>
+                 <option value="二月上旬">二月上旬</option>
+                 <option value="二月中旬">二月中旬</option>
+                 <option value="二月下旬">二月下旬</option>
+                 <option value="三月上旬">三月上旬</option>
+                 <option value="三月中旬">三月中旬</option>
+                 <option value="三月下旬">三月下旬</option>
+                 <option value="四月上旬">四月上旬</option>
+                 <option value="四月中旬">四月中旬</option>
+                 <option value="四月下旬">四月下旬</option>
+                 <option value="五月上旬">五月上旬</option>
+                 <option value="五月中旬">五月中旬</option>
+                 <option value="五月下旬">五月下旬</option>
+                 <option value="六月上旬">六月上旬</option>
+                 <option value="六月中旬">六月中旬</option>
+                 <option value="六月下旬">六月下旬</option>
+                 <option value="七月上旬">七月上旬</option>
+                 <option value="七月中旬">七月中旬</option>
+                 <option value="七月下旬">七月下旬</option>
+                 <option value="八月上旬">八月上旬</option>
+                 <option value="八月中旬">八月中旬</option>
+                 <option value="八月下旬">八月下旬</option>
+                 <option value="九月上旬">九月上旬</option>
+                 <option value="九月中旬">九月中旬</option>
+                 <option value="九月下旬">九月下旬</option>
+                 <option value="十月上旬">十月上旬</option>
+                 <option value="十月中旬">十月中旬</option>
+                 <option value="十月下旬">十月下旬</option>
+                 <option value="十一月上旬">十一月上旬</option>
+                 <option value="十一月中旬">十一月中旬</option>
+                 <option value="十一月下旬">十一月下旬</option>
+                 <option value="十二月上旬">十二月上旬</option>
+                 <option value="十二月中旬">十二月中旬</option>
+                 <option value="十二月下旬">十二月下旬</option>
+             </select>
+        </div>
+        <div class="form-group">
+          <label>请选择农事类别</label>
+             <select class="form-control" name="type" id="type">
+                 <option value="">全部</option>
+                 <option value="耕地">耕地</option>
+                 <option value="播种">播种</option>
+                 <option value="灌溉">灌溉</option>
+                 <option value="施肥">施肥</option>
+                 <option value="除草">除草</option>
+                 <option value="防病虫害">防病虫害</option>
+                 <option value="防冻寒害">防冻寒害</option>
+                 <option value="防湿害">防湿害</option>
+                 <option value="防倒伏">防倒伏</option>
+                 <option value="收割">收割</option>
+                 <option value="综合">综合</option>
+                 <option value="其它">其它</option>
+             </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button class="modal-action modal-close btn waves-effect waves-light" type="submit" name="action">查找</button>
+      </div>
+    </div>
+    </form>
+
+    <div class="container">
+         <div>
+            {% block content %}
+            {% endblock %}
+         </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 Copyright Jlan
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      $(document).ready(function() {
+        $(".button-collapse").sideNav();
+      });
+
+      $(document).ready(function() {
+        $('.modal').modal();
+      });
+
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+
+{#      $(function() {#}
+{#          $('#search').bind('input propertychange', function () {#}
+{#              var $key = $("#search").val();#}
+{#              $("#search_form").attr("action",'/search/'+$key+'/');#}
+{#          })#}
+{#      });#}
+
+      $(function() {
+        $('#show_table').bind('click', function () {
+            var product=$("#crop option:selected");  //获取选中的项
+            var market=$("#time option:selected");
+            //alert(options.val());   //拿到选中项的值
+            //alert('/show_table/'+product.val()+'/'+market.val());
+            $.get('/show_table/'+product.val()+'/'+market.val())
+        });
+      });
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+
+{% block content %}
+<div>
+    {% if message %}
+        <h1>农事操作： {{ message }}</h1>
+    {% endif %}
+    <table class="bordered highlight responsive-table">
+        <thead>
+            <tr>
+                <th data-field="farming">操作</th>
+                <th data-field="crop" class="col s6">作物</th>
+                <th data-field="time" class="col s2">时间</th>
+                <th data-field="type" class="col s2">类型</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if farmings %}
+            {% for f in farmings %}
+            <tr>
+              <td>
+                  <a>{{ f.fdetail }}</a>
+              </td>
+              <td>
+                  <a>{{ f.crop.crop }}</a>
+              </td>
+              <td>
+                  <a>{{ f.ftime.ftime }}</a>
+              </td>
+              <td>
+                  <a>{{ f.ftype.ftype }}</a>
+              </td>
+
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
